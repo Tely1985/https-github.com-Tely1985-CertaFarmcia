@@ -1,4 +1,5 @@
-export type TabId = 'massa' | 'emagrecimento' | 'vitaminas' | 'cuidados' | 'fale';
+
+export type TabId = 'massa' | 'emagrecimento' | 'vitaminas' | 'cuidados' | 'fale' | 'admin';
 
 export interface Product {
     id: string;
