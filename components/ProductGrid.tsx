@@ -10,7 +10,7 @@ interface ProductGridProps {
     buttonColorClass: string; // e.g., 'bg-certa-orange'
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ filters, products, accentColorClass, buttonColorClass }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ id, filters, products, accentColorClass, buttonColorClass }) => {
     const [activeFilter, setActiveFilter] = useState<string>('all');
     const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
 
@@ -38,7 +38,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ filters, products, accentColo
     };
 
     return (
-        <div>
+        <div id={id}>
             {/* Filters */}
             <section className="mb-12">
                 <h3 className="text-2xl font-bold text-certa-blue mb-4">Refinar Busca</h3>

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { ChevronRight, ArrowRight, Play } from 'lucide-react';
 import Header from './components/Header';
@@ -28,6 +27,13 @@ const App: React.FC = () => {
     const currentSection = SECTIONS[activeTab];
     const colorClasses = getTabColorClasses(activeTab);
 
+    const handleHeroButtonClick = () => {
+        const gridElement = document.getElementById(`grid-${activeTab}`);
+        if (gridElement) {
+            gridElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     // Renderiza o conteúdo principal baseado na tab
     const renderContent = () => {
         if (activeTab === 'fale') {
@@ -45,6 +51,7 @@ const App: React.FC = () => {
                     buttonText={currentSection.hero.buttonText}
                     buttonIconName={currentSection.hero.buttonIcon}
                     textColorClass={currentSection.hero.textColorClass}
+                    onButtonClick={handleHeroButtonClick}
                 />
                 
                 <ProductGrid 

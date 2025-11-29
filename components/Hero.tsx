@@ -9,6 +9,7 @@ interface HeroProps {
     buttonText: string;
     buttonIconName: string;
     textColorClass: string;
+    onButtonClick?: () => void;
 }
 
 const iconMap: Record<string, React.FC<any>> = {
@@ -18,7 +19,7 @@ const iconMap: Record<string, React.FC<any>> = {
     'heart-handshake': HeartHandshake
 };
 
-const Hero: React.FC<HeroProps> = ({ title, subtitle, image, bgColor, buttonText, buttonIconName, textColorClass }) => {
+const Hero: React.FC<HeroProps> = ({ title, subtitle, image, bgColor, buttonText, buttonIconName, textColorClass, onButtonClick }) => {
     const Icon = iconMap[buttonIconName] || Heart;
 
     return (
@@ -31,7 +32,10 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, image, bgColor, buttonText
                     <p className="text-lg mb-6 opacity-90">
                         {subtitle}
                     </p>
-                    <button className={`inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg bg-white hover:bg-gray-100 transition duration-300 transform hover:scale-105 ${textColorClass}`}>
+                    <button 
+                        onClick={onButtonClick}
+                        className={`inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg bg-white hover:bg-gray-100 transition duration-300 transform hover:scale-105 ${textColorClass}`}
+                    >
                         {buttonText}
                         <Icon className="w-5 h-5 ml-2" />
                     </button>
