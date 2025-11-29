@@ -15,11 +15,13 @@ export const SECTIONS: Record<string, SectionData> = {
         },
         filters: [
             { id: 'proteinas', label: 'Proteínas', count: 32 },
-            { id: 'creatina', label: 'Creatina', count: 16 },
+            { id: 'creatina', label: 'Creatina', count: 18 },
             { id: 'aminoacidos', label: 'Aminoácidos', count: 20 },
             { id: 'pretreino', label: 'Pré-Treino', count: 12 },
         ],
         products: [
+            { id: 'new_m1', name: 'Dado de Creatina Caramelo- CERTA', brand: 'CERTA Pharma', price: 130.00, category: 'creatina', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Dado+Creatina', tag: 'NOVIDADE' },
+            { id: 'new_m2', name: 'Certa Creatina Creamy – Doce de leite', brand: 'CERTA Pharma', price: 65.80, category: 'creatina', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Creatina+Creamy' },
             { id: 'm5', name: 'Dado de Creatina Caramelo (30un)', brand: 'CERTA Pharma', price: 64.90, category: 'creatina', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Dado+Caramelo', tag: 'LANÇAMENTO' },
             { id: 'm1', name: 'Whey Protein Concentrado Premium (1kg)', brand: 'MaxiMuscle', price: 159.90, category: 'proteinas', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Whey+Protein' },
             { id: 'm2', name: 'Creatina Monoidratada Micronizada (300g)', brand: 'PuraForça', price: 79.90, category: 'creatina', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Creatina' },
@@ -98,6 +100,19 @@ export const SECTIONS: Record<string, SectionData> = {
             { id: 'saudeintima', label: 'Saúde Íntima' },
         ],
         products: [
+            // Novos Produtos Dermocosméticos
+            { id: 'new_c1', name: 'Lip Balm 5g – Formula CERTA', brand: 'CERTA Pharma', price: 35.00, category: 'dermocosmeticos', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Lip+Balm' },
+            { id: 'new_c2', name: 'Gloss Labial Volume e hidratação 4,5g', brand: 'CERTA Pharma', price: 46.00, category: 'dermocosmeticos', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Gloss+Volume' },
+            { id: 'new_c3', name: 'Lip Gloss Celebration 4,5g', brand: 'CERTA Pharma', price: 46.00, category: 'dermocosmeticos', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Gloss+Celebration' },
+            { id: 'new_c4', name: 'Lip Gloss Hollywood 4,5g', brand: 'CERTA Pharma', price: 46.00, category: 'dermocosmeticos', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Gloss+Hollywood' },
+            { id: 'new_c5', name: 'Lip Glow – Fórmula CERTA', brand: 'CERTA Pharma', price: 46.00, category: 'dermocosmeticos', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Lip+Glow' },
+            
+            // Novos Manipulados (Fitoterápicos / Saúde Íntima)
+            { id: 'new_c6', name: 'Sem ansiedade- Fórmula CERTA', brand: 'CERTA Pharma', price: 90.00, category: 'fitoterapicos', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Sem+Ansiedade', tag: 'MANIPULADO' },
+            { id: 'new_c7', name: 'Mais libido – Fórmula CERTA', brand: 'CERTA Pharma', price: 65.00, category: 'saudeintima', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Mais+Libido', tag: 'MANIPULADO' },
+            { id: 'new_c8', name: 'Xô TPM- Fórmula CERTA', brand: 'CERTA Pharma', price: 71.00, category: 'fitoterapicos', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Xo+TPM', tag: 'MANIPULADO' },
+
+            // Produtos Existentes
             { id: 'c1', name: 'Sérum Facial Ácido Hialurônico 5%', brand: 'DermoSkin', price: 135.00, category: 'dermocosmeticos', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Acido+Hialuronico' },
             { id: 'c2', name: 'Colágeno Hidrolisado Verisol (30 sachês)', brand: 'BeautyFirma', price: 179.90, category: 'cabelounhas', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Colageno' },
             { id: 'c3', name: 'Minoxidil 5% Loção Capilar (60ml)', brand: 'CERTA Pharma', price: 75.00, category: 'cabelounhas', image: 'https://placehold.co/200x200/F0F9FF/0A3350?text=Minoxidil', tag: 'MANIPULADO' },
