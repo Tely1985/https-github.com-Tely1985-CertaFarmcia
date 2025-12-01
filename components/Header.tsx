@@ -66,9 +66,11 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                     <div className="flex justify-between items-center">
                         {/* Logo */}
                         <div className="flex-shrink-0 cursor-pointer" onClick={() => handleTabClick('massa')}>
-                            <h1 className="text-2xl font-bold text-certa-blue">
-                                CERTA <span className="text-certa-orange">FARMÁCIA</span>
-                            </h1>
+                            <img 
+                                src="https://i.postimg.cc/Njx63QjB/logo-certa-2.webp" 
+                                alt="CERTA Farmácia" 
+                                className="h-12 md:h-16 w-auto"
+                            />
                         </div>
 
                         {/* Desktop Search */}
