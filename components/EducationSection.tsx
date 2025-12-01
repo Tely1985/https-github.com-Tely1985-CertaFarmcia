@@ -43,7 +43,7 @@ const EducationSection: React.FC = () => {
                 {/* Imagem Ilustrativa */}
                 <div className="relative h-full min-h-[400px] rounded-3xl overflow-hidden shadow-2xl bg-gray-100">
                     <img 
-                        src="https://placehold.co/600x800/0A3350/ffffff?text=CERTA+Explica" 
+                        src="https://i.postimg.cc/Z5LFPS90/Certa-farmacia-Manipulacao.webp" 
                         alt="CERTA Explica" 
                         className="absolute inset-0 w-full h-full object-cover transform hover:scale-105 transition duration-700"
                     />
