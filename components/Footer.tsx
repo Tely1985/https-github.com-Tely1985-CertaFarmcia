@@ -1,5 +1,5 @@
 import React from 'react';
-import { Instagram, Facebook, Youtube, MapPin, Phone, Mail as MailIcon } from 'lucide-react';
+import { Instagram, Facebook, Youtube, MapPin, Phone, MessageCircle } from 'lucide-react';
 import Modal from './Modal';
 
 const Footer: React.FC = () => {
@@ -13,27 +13,52 @@ const Footer: React.FC = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                     {/* Column 1: Brand & Contact */}
-                    <div>
-                        <div className="flex items-center mb-4">
+                    <div className="lg:col-span-1">
+                        <div className="flex items-center mb-6">
                             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3 shadow-md">
                                 <span className="text-certa-blue font-bold text-xl">C</span>
                             </div>
                             <h4 className="text-2xl font-bold">CERTA <span className="text-certa-orange">FARMÁCIA</span></h4>
                         </div>
                         
-                        <div className="space-y-3 text-sm text-gray-300">
-                             <div className="flex items-start">
-                                <MapPin className="w-4 h-4 mr-2 mt-1 flex-shrink-0 text-certa-orange" />
-                                <p>Rua XV de Novembro, 3358 <br/> São José do Rio Preto - SP</p>
-                             </div>
-                             <div className="flex items-center">
-                                <Phone className="w-4 h-4 mr-2 text-certa-orange" />
-                                <p>(17) 2136-6999</p>
-                             </div>
-                             <div className="flex items-center">
-                                <MailIcon className="w-4 h-4 mr-2 text-certa-orange" />
-                                <p>contato@certafarmacia.com.br</p>
-                             </div>
+                        <div className="space-y-6">
+                            {/* Loja 1 */}
+                            <div>
+                                <h5 className="text-certa-orange font-bold text-sm uppercase tracking-wider mb-2">Loja 1 - Rio Preto</h5>
+                                <div className="space-y-2 text-sm text-gray-300">
+                                     <div className="flex items-start">
+                                        <MapPin className="w-4 h-4 mr-2 mt-1 flex-shrink-0 text-gray-500" />
+                                        <p>Rua XV de Novembro, 3358 - Centro<br/>São José do Rio Preto - SP</p>
+                                     </div>
+                                     <div className="flex items-center">
+                                        <Phone className="w-4 h-4 mr-2 text-gray-500" />
+                                        <p>(17) 2136-6999</p>
+                                     </div>
+                                     <div className="flex items-center">
+                                        <MessageCircle className="w-4 h-4 mr-2 text-green-500" />
+                                        <p>Whatsapp: (17) 99142-0030</p>
+                                     </div>
+                                </div>
+                            </div>
+
+                            {/* Loja 2 */}
+                            <div>
+                                <h5 className="text-certa-orange font-bold text-sm uppercase tracking-wider mb-2">Loja 2 - Catanduva</h5>
+                                <div className="space-y-2 text-sm text-gray-300">
+                                     <div className="flex items-start">
+                                        <MapPin className="w-4 h-4 mr-2 mt-1 flex-shrink-0 text-gray-500" />
+                                        <p>Rua Teresina, 764 (Esq. c/ R. Belo Horizonte)<br/>Centro - Catanduva - SP</p>
+                                     </div>
+                                     <div className="flex items-center">
+                                        <Phone className="w-4 h-4 mr-2 text-gray-500" />
+                                        <p>(17) 3521-2201</p>
+                                     </div>
+                                     <div className="flex items-center">
+                                        <MessageCircle className="w-4 h-4 mr-2 text-green-500" />
+                                        <p>Whatsapp: (17) 99142-0011</p>
+                                     </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="flex space-x-4 mt-6">
