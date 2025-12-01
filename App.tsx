@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ArrowRight, Play, X } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
@@ -10,6 +11,7 @@ import CartSidebar from './components/CartSidebar';
 import AuthModal from './components/AuthModal';
 import AccountDashboard from './components/AccountDashboard';
 import CategoryNav from './components/CategoryNav';
+import EducationSection from './components/EducationSection';
 import { SECTIONS } from './constants';
 import { TabId } from './types';
 import { useAuth } from './context/AuthContext';
@@ -17,7 +19,6 @@ import { useAuth } from './context/AuthContext';
 const App: React.FC = () => {
     const [activeTab, setActiveTab] = useState<TabId>('massa');
     const [modalInfo, setModalInfo] = useState<{isOpen: boolean, message: string}>({isOpen: false, message: ''});
-    const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
     const { isAuthenticated, user } = useAuth();
 
     // Reset to home if user logs out while on account page
@@ -26,15 +27,6 @@ const App: React.FC = () => {
             setActiveTab('massa');
         }
     }, [isAuthenticated, activeTab]);
-
-    // Handle Escape key to close video modal
-    useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setIsVideoModalOpen(false);
-        };
-        window.addEventListener('keydown', handleEsc);
-        return () => window.removeEventListener('keydown', handleEsc);
-    }, []);
 
     // Helper to extract styling classes based on active tab for consistency
     const getTabColorClasses = (tab: TabId) => {
@@ -124,73 +116,15 @@ const App: React.FC = () => {
                 {/* Main Content Area */}
                 {renderContent()}
 
-                {/* Common Authority Section (Hide on account/contact pages for cleanliness) */}
-                {activeTab !== 'conta' && activeTab !== 'fale' && (
-                    <section className="mb-12 bg-white p-8 rounded-xl shadow-lg mt-12">
-                        <div className="flex flex-col md:flex-row items-center justify-between">
-                            <div className="md:w-1/2 mb-6 md:mb-0 md:pr-8">
-                                <h3 className="text-3xl font-bold text-certa-blue mb-4">CERTA Explica: Onde a ciência encontra sua saúde</h3>
-                                <p className="text-gray-600 mb-4">
-                                    Tire suas dúvidas com nossos Farmacêuticos especialistas. Assista a tutoriais, guias e dicas de saúde baseadas em evidências.
-                                </p>
-                                <button 
-                                    onClick={() => setModalInfo({isOpen: true, message: 'Esta funcionalidade será implementada em breve. Por favor, use o Fale com o Farmacêutico para suporte.'})}
-                                    className="inline-flex items-center text-certa-orange font-semibold hover:underline"
-                                >
-                                    Acessar Blog e Vídeos
-                                    <ArrowRight className="w-4 h-4 ml-2" />
-                                </button>
-                            </div>
-                            <div 
-                                className="md:w-1/2 relative rounded-xl overflow-hidden shadow-xl aspect-video cursor-pointer group"
-                                onClick={() => setIsVideoModalOpen(true)}
-                            >
-                                <img 
-                                    src="https://img.youtube.com/vi/DbTFd6UZ1_w/maxresdefault.jpg" 
-                                    alt="Capa do Vídeo" 
-                                    className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition">
-                                    <div className="w-20 h-20 bg-certa-orange rounded-full flex items-center justify-center text-white shadow-2xl transform transition duration-300 group-hover:scale-110">
-                                        <Play className="w-8 h-8 ml-1" fill="currentColor" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                )}
+                {/* Education Section - Always visible unless on Account page */}
+                {activeTab !== 'conta' && <EducationSection />}
+
             </main>
 
             <Footer />
 
             <CartSidebar />
             <AuthModal />
-
-            {/* Video Modal Popup */}
-            {isVideoModalOpen && (
-                <div 
-                    className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-90 p-4 animate-fadeIn backdrop-blur-sm" 
-                    onClick={() => setIsVideoModalOpen(false)}
-                >
-                    <div className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl shadow-2xl overflow-hidden border border-gray-800">
-                        <button 
-                            onClick={(e) => { e.stopPropagation(); setIsVideoModalOpen(false); }}
-                            className="absolute top-4 right-4 z-10 text-white bg-black bg-opacity-50 hover:bg-certa-orange p-2 rounded-full transition duration-200"
-                            aria-label="Fechar Vídeo"
-                        >
-                            <X className="w-6 h-6" />
-                        </button>
-                        <iframe 
-                            className="w-full h-full"
-                            src="https://www.youtube.com/embed/DbTFd6UZ1_w?autoplay=1&start=2&rel=0" 
-                            title="Vídeo CERTA Farmácia" 
-                            frameBorder="0" 
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            allowFullScreen
-                        ></iframe>
-                    </div>
-                </div>
-            )}
 
             <Modal 
                 isOpen={modalInfo.isOpen} 
