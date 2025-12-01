@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dumbbell, Scale, Shield, Sparkles, ArrowRight } from 'lucide-react';
+import { Dumbbell, Flame, Shield, Sparkles, ArrowRight } from 'lucide-react';
 import { TabId } from '../types';
 
 interface CategoryNavProps {
@@ -18,7 +18,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({ onSelectCategory }) => {
         {
             id: 'emagrecimento' as TabId,
             label: 'EMAGRECIMENTO',
-            icon: Scale,
+            icon: Flame,
             gradient: 'from-[#fbbf24] to-[#f97316]', // Laranja/Amarelo
             shadowColor: 'shadow-orange-200'
         },
