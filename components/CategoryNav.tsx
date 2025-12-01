@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BicepsFlexed, Flame, Shield, Sparkles, ArrowRight } from 'lucide-react';
 import { TabId } from '../types';
@@ -46,7 +47,10 @@ const CategoryNav: React.FC<CategoryNavProps> = ({ onSelectCategory }) => {
                     <h2 className="text-3xl md:text-4xl font-extrabold text-certa-blue">Qual seu objetivo hoje?</h2>
                 </div>
                 <button 
-                    onClick={() => onSelectCategory('massa')}
+                    onClick={() => {
+                        const allCats = document.querySelector('section:last-of-type'); // Tries to find the AllCategoriesSection
+                        if (allCats) allCats.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className="hidden md:flex items-center text-gray-500 hover:text-certa-orange transition font-medium text-sm mt-4 md:mt-0"
                 >
                     Ver todas as categorias <ArrowRight className="w-4 h-4 ml-1" />

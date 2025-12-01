@@ -41,6 +41,10 @@ const App: React.FC = () => {
 
     // When changing tabs, clear selected product to show list view
     const handleTabChange = (tab: TabId) => {
+        // If clicking the same tab, scroll to top manually since useEffect [activeTab] won't trigger
+        if (tab === activeTab && !selectedProduct) {
+             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
         setActiveTab(tab);
         setSelectedProduct(null);
     };
