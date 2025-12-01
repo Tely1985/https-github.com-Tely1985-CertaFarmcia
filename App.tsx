@@ -16,6 +16,7 @@ import NewUnitSection from './components/NewUnitSection';
 import InstitutionalSection from './components/InstitutionalSection';
 import FAQSection from './components/FAQSection';
 import ProductDetails from './components/ProductDetails';
+import AllCategoriesSection from './components/AllCategoriesSection';
 import { SECTIONS } from './constants';
 import { TabId, Product } from './types';
 import { useAuth } from './context/AuthContext';
@@ -117,6 +118,8 @@ const App: React.FC = () => {
                     buttonColorClass={colorClasses.button}
                     onProductClick={handleProductClick}
                 />
+
+                <AllCategoriesSection onSelectCategory={handleTabChange} />
             </div>
         );
     };
