@@ -68,18 +68,7 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Column 2: Info */}
-                    <div>
-                        <h4 className="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2 inline-block">Informações</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            <li><button onClick={() => openModal('Esta seção "Quem Somos" será implementada em breve.')} className="hover:text-certa-orange transition">Quem Somos</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Nossas Lojas" será implementada em breve.')} className="hover:text-certa-orange transition">Nossas Lojas</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Política de Troca" será implementada em breve.')} className="hover:text-certa-orange transition">Política de Troca</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Política de Privacidade" será implementada em breve.')} className="hover:text-certa-orange transition">Política de Privacidade</button></li>
-                        </ul>
-                    </div>
-
-                    {/* Column 3: Help */}
+                    {/* Column 2: Help (Was Column 3) */}
                     <div>
                         <h4 className="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2 inline-block">Ajuda</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
@@ -87,6 +76,17 @@ const Footer: React.FC = () => {
                             <li><button onClick={() => openModal('Esta seção "Minha Conta" será implementada em breve.')} className="hover:text-certa-orange transition">Minha Conta</button></li>
                             <li><button onClick={() => openModal('Esta seção "Rastrear Pedido" será implementada em breve.')} className="hover:text-certa-orange transition">Rastrear Pedido</button></li>
                             <li><button onClick={() => openModal('Esta seção "Como Comprar" será implementada em breve.')} className="hover:text-certa-orange transition">Como Comprar</button></li>
+                        </ul>
+                    </div>
+
+                    {/* Column 3: Info (Was Column 2) */}
+                    <div>
+                        <h4 className="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2 inline-block">Informações</h4>
+                        <ul className="space-y-2 text-sm text-gray-300">
+                            <li><button onClick={() => openModal('Esta seção "Quem Somos" será implementada em breve.')} className="hover:text-certa-orange transition">Quem Somos</button></li>
+                            <li><button onClick={() => openModal('Esta seção "Nossas Lojas" será implementada em breve.')} className="hover:text-certa-orange transition">Nossas Lojas</button></li>
+                            <li><button onClick={() => openModal('Esta seção "Política de Troca" será implementada em breve.')} className="hover:text-certa-orange transition">Política de Troca</button></li>
+                            <li><button onClick={() => openModal('Esta seção "Política de Privacidade" será implementada em breve.')} className="hover:text-certa-orange transition">Política de Privacidade</button></li>
                         </ul>
                     </div>
 
