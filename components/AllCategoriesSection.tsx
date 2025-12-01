@@ -38,28 +38,28 @@ const AllCategoriesSection: React.FC<AllCategoriesSectionProps> = ({ onSelectCat
             image: 'https://placehold.co/150x150/fce7f3/be185d?text=Beauty'
         },
         {
-            id: 'cuidados' as TabId, // Mapping to cuidados for demo
+            id: 'cuidados' as TabId, // Mapeado para Cuidados (Filtros internos existem para Saúde Íntima)
             label: 'Saúde da Mulher',
             icon: Heart,
             color: 'bg-rose-100 text-rose-600',
             image: 'https://placehold.co/150x150/ffe4e6/e11d48?text=Mulher'
         },
         {
-            id: 'cuidados' as TabId, // Mapping to cuidados for demo
+            id: 'cuidados' as TabId, // Mapeado para Cuidados (Filtro interno existe: saudehomem)
             label: 'Saúde do Homem',
             icon: Stethoscope,
             color: 'bg-slate-100 text-slate-600',
             image: 'https://placehold.co/150x150/f1f5f9/475569?text=Homem'
         },
         {
-            id: 'cuidados' as TabId, // Mapping generic
+            id: 'cuidados' as TabId, // Mapeado para Cuidados
             label: 'Mamãe & Bebê',
             icon: Baby,
             color: 'bg-purple-100 text-purple-600',
             image: 'https://placehold.co/150x150/f3e8ff/7e22ce?text=Baby'
         },
         {
-            id: 'massa' as TabId, // Mapping generic
+            id: 'vitaminas' as TabId, // Mapeado para Vitaminas (Onde há ofertas de Omega 3)
             label: 'Ofertas & Kits',
             icon: Percent,
             color: 'bg-yellow-100 text-yellow-600',
@@ -76,10 +76,10 @@ const AllCategoriesSection: React.FC<AllCategoriesSectionProps> = ({ onSelectCat
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {categories.map((cat, index) => (
-                    <div 
+                    <button 
                         key={index}
                         onClick={() => onSelectCategory(cat.id)}
-                        className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col items-center text-center"
+                        className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col items-center text-center w-full focus:outline-none focus:ring-2 focus:ring-certa-orange"
                     >
                         <div className={`p-4 rounded-full mb-4 ${cat.color} group-hover:scale-110 transition-transform duration-300`}>
                             <cat.icon className="w-8 h-8" />
@@ -88,7 +88,7 @@ const AllCategoriesSection: React.FC<AllCategoriesSectionProps> = ({ onSelectCat
                             {cat.label}
                         </h3>
                         <span className="text-xs text-gray-400 mt-1">Ver produtos</span>
-                    </div>
+                    </button>
                 ))}
             </div>
         </section>
