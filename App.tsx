@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ArrowRight, Play } from 'lucide-react';
+import { ChevronRight, ArrowRight, Play, X } from 'lucide-react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Hero from './components/Hero';
@@ -16,6 +16,7 @@ import { useAuth } from './context/AuthContext';
 const App: React.FC = () => {
     const [activeTab, setActiveTab] = useState<TabId>('massa');
     const [modalInfo, setModalInfo] = useState<{isOpen: boolean, message: string}>({isOpen: false, message: ''});
+    const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
     const { isAuthenticated, user } = useAuth();
 
     // Reset to home if user logs out while on account page
@@ -24,6 +25,15 @@ const App: React.FC = () => {
             setActiveTab('massa');
         }
     }, [isAuthenticated, activeTab]);
+
+    // Handle Escape key to close video modal
+    useEffect(() => {
+        const handleEsc = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setIsVideoModalOpen(false);
+        };
+        window.addEventListener('keydown', handleEsc);
+        return () => window.removeEventListener('keydown', handleEsc);
+    }, []);
 
     // Helper to extract styling classes based on active tab for consistency
     const getTabColorClasses = (tab: TabId) => {
@@ -58,7 +68,7 @@ const App: React.FC = () => {
 
         // Seções de produtos padrão
         return currentSection && (
-            <div className="animate-fadeIn">
+            <div className="animate-fadeIn" key={activeTab}>
                 <Hero 
                     title={currentSection.hero.title}
                     subtitle={currentSection.hero.subtitle}
@@ -128,13 +138,19 @@ const App: React.FC = () => {
                                     <ArrowRight className="w-4 h-4 ml-2" />
                                 </button>
                             </div>
-                            <div className="md:w-1/2 relative rounded-xl overflow-hidden shadow-xl group cursor-pointer" 
-                                    onClick={() => setModalInfo({isOpen: true, message: 'A reprodução do vídeo está indisponível na demonstração.'})}>
-                                <img src="https://placehold.co/600x350/0A3350/ffffff?text=Video+Capa+-+Dicas+de+Saúde" alt="Capa do vídeo" className="w-full h-auto object-cover transition duration-300 group-hover:scale-105" />
-                                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-20 transition duration-300">
-                                    <button className="w-16 h-16 bg-certa-orange text-white rounded-full flex items-center justify-center transform group-hover:scale-110 transition duration-300">
-                                        <Play className="w-8 h-8 fill-current ml-1" />
-                                    </button>
+                            <div 
+                                className="md:w-1/2 relative rounded-xl overflow-hidden shadow-xl aspect-video cursor-pointer group"
+                                onClick={() => setIsVideoModalOpen(true)}
+                            >
+                                <img 
+                                    src="https://img.youtube.com/vi/DbTFd6UZ1_w/maxresdefault.jpg" 
+                                    alt="Capa do Vídeo" 
+                                    className="w-full h-full object-cover transition duration-300 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center group-hover:bg-opacity-30 transition">
+                                    <div className="w-20 h-20 bg-certa-orange rounded-full flex items-center justify-center text-white shadow-2xl transform transition duration-300 group-hover:scale-110">
+                                        <Play className="w-8 h-8 ml-1" fill="currentColor" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -146,6 +162,32 @@ const App: React.FC = () => {
 
             <CartSidebar />
             <AuthModal />
+
+            {/* Video Modal Popup */}
+            {isVideoModalOpen && (
+                <div 
+                    className="fixed inset-0 z-[1000] flex items-center justify-center bg-black bg-opacity-90 p-4 animate-fadeIn backdrop-blur-sm" 
+                    onClick={() => setIsVideoModalOpen(false)}
+                >
+                    <div className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl shadow-2xl overflow-hidden border border-gray-800">
+                        <button 
+                            onClick={(e) => { e.stopPropagation(); setIsVideoModalOpen(false); }}
+                            className="absolute top-4 right-4 z-10 text-white bg-black bg-opacity-50 hover:bg-certa-orange p-2 rounded-full transition duration-200"
+                            aria-label="Fechar Vídeo"
+                        >
+                            <X className="w-6 h-6" />
+                        </button>
+                        <iframe 
+                            className="w-full h-full"
+                            src="https://www.youtube.com/embed/DbTFd6UZ1_w?autoplay=1&start=2&rel=0" 
+                            title="Vídeo CERTA Farmácia" 
+                            frameBorder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                </div>
+            )}
 
             <Modal 
                 isOpen={modalInfo.isOpen} 

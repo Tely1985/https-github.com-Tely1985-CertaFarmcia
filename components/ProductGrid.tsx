@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Product, FilterOption } from '../types';
 import ProductCard from './ProductCard';
 
@@ -6,28 +6,19 @@ interface ProductGridProps {
     id: string;
     filters: FilterOption[];
     products: Product[];
-    accentColorClass: string; // e.g., 'border-certa-orange' or text color
-    buttonColorClass: string; // e.g., 'bg-certa-orange'
+    accentColorClass: string; 
+    buttonColorClass: string; 
 }
 
 const ProductGrid: React.FC<ProductGridProps> = ({ id, filters, products, accentColorClass, buttonColorClass }) => {
     const [activeFilter, setActiveFilter] = useState<string>('all');
-    const [filteredProducts, setFilteredProducts] = useState<Product[]>(products);
 
-    useEffect(() => {
-        if (activeFilter === 'all') {
-            setFilteredProducts(products);
-        } else {
-            setFilteredProducts(products.filter(p => p.category === activeFilter));
-        }
-    }, [activeFilter, products]);
+    // Derived state: Calculates filtered products on the fly during render.
+    // This eliminates the need for useEffect to sync state, fixing potential "Error 153" issues.
+    const filteredProducts = activeFilter === 'all' 
+        ? products 
+        : products.filter(p => p.category === activeFilter);
 
-    // Reset filter when products props change (tab switch)
-    useEffect(() => {
-        setActiveFilter('all');
-    }, [products]);
-
-    // Helper to determine button styles based on active state and dynamic color props
     const getButtonStyle = (filterId: string) => {
         const isActive = activeFilter === filterId;
         

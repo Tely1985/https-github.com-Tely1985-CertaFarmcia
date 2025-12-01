@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Truck, Handshake, ClipboardCheck, Search, User as UserIcon, ShoppingCart, Menu, MessageCircle, LogOut } from 'lucide-react';
 import { TabId } from '../types';
@@ -38,6 +37,9 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             ? 'text-certa-orange font-bold border-b-2 border-certa-orange' 
             : 'text-certa-blue hover:text-certa-orange border-b-2 border-transparent hover:border-certa-orange';
     };
+
+    // Safe access to user name to prevent crashes
+    const firstName = user?.name ? user.name.split(' ')[0] : 'Conta';
 
     return (
         <>
@@ -89,7 +91,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                                     {isAuthenticated && <span className="absolute bottom-0 right-0 w-2 h-2 bg-green-500 rounded-full border border-white"></span>}
                                 </div>
                                 <span className="text-xs block max-w-[80px] truncate">
-                                    {isAuthenticated ? user?.name.split(' ')[0] : 'Conta'}
+                                    {isAuthenticated ? firstName : 'Conta'}
                                 </span>
                             </button>
 
