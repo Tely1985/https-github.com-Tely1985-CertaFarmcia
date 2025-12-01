@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import Header from './components/Header';
@@ -12,6 +11,7 @@ import AuthModal from './components/AuthModal';
 import AccountDashboard from './components/AccountDashboard';
 import CategoryNav from './components/CategoryNav';
 import EducationSection from './components/EducationSection';
+import NewUnitSection from './components/NewUnitSection';
 import { SECTIONS } from './constants';
 import { TabId } from './types';
 import { useAuth } from './context/AuthContext';
@@ -116,8 +116,13 @@ const App: React.FC = () => {
                 {/* Main Content Area */}
                 {renderContent()}
 
-                {/* Education Section - Always visible unless on Account page */}
-                {activeTab !== 'conta' && <EducationSection />}
+                {/* Shared Sections for Home/Product Pages */}
+                {activeTab !== 'conta' && activeTab !== 'fale' && (
+                    <>
+                        <EducationSection />
+                        <NewUnitSection />
+                    </>
+                )}
 
             </main>
 
