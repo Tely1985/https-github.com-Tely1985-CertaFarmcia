@@ -14,14 +14,17 @@ import CategoryNav from './components/CategoryNav';
 import EducationSection from './components/EducationSection';
 import NewUnitSection from './components/NewUnitSection';
 import InstitutionalSection from './components/InstitutionalSection';
+import FAQSection from './components/FAQSection';
+import ProductDetails from './components/ProductDetails';
 import { SECTIONS } from './constants';
-import { TabId } from './types';
+import { TabId, Product } from './types';
 import { useAuth } from './context/AuthContext';
 
 const App: React.FC = () => {
     const [activeTab, setActiveTab] = useState<TabId>('massa');
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
     const [modalInfo, setModalInfo] = useState<{isOpen: boolean, message: string}>({isOpen: false, message: ''});
-    const { isAuthenticated, user } = useAuth();
+    const { isAuthenticated } = useAuth();
 
     // Reset to home if user logs out while on account page
     useEffect(() => {
@@ -29,6 +32,21 @@ const App: React.FC = () => {
             setActiveTab('massa');
         }
     }, [isAuthenticated, activeTab]);
+
+    // Scroll top on tab change or product selection
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [activeTab, selectedProduct]);
+
+    // When changing tabs, clear selected product to show list view
+    const handleTabChange = (tab: TabId) => {
+        setActiveTab(tab);
+        setSelectedProduct(null);
+    };
+
+    const handleProductClick = (product: Product) => {
+        setSelectedProduct(product);
+    };
 
     // Helper to extract styling classes based on active tab for consistency
     const getTabColorClasses = (tab: TabId) => {
@@ -41,7 +59,7 @@ const App: React.FC = () => {
         }
     };
 
-    const currentSection = activeTab === 'conta' ? null : SECTIONS[activeTab];
+    const currentSection = activeTab === 'conta' || activeTab === 'faq' ? null : SECTIONS[activeTab];
     const colorClasses = getTabColorClasses(activeTab);
 
     const handleHeroButtonClick = () => {
@@ -51,7 +69,7 @@ const App: React.FC = () => {
         }
     };
 
-    // Renderiza o conteúdo principal baseado na tab
+    // Renderiza o conteúdo principal baseado na tab e seleção de produto
     const renderContent = () => {
         if (activeTab === 'fale') {
             return <ContactSection />;
@@ -61,7 +79,21 @@ const App: React.FC = () => {
              return <AccountDashboard />;
         }
 
-        // Seções de produtos padrão
+        if (activeTab === 'faq') {
+            return <FAQSection />;
+        }
+
+        // Se um produto estiver selecionado, exibe detalhes ao invés do grid
+        if (selectedProduct) {
+            return (
+                <ProductDetails 
+                    product={selectedProduct} 
+                    onBack={() => setSelectedProduct(null)} 
+                />
+            );
+        }
+
+        // Seções de produtos padrão (Lista)
         return currentSection && (
             <div className="animate-fadeIn" key={activeTab}>
                 <Hero 
@@ -75,7 +107,7 @@ const App: React.FC = () => {
                     onButtonClick={handleHeroButtonClick}
                 />
 
-                <CategoryNav onSelectCategory={setActiveTab} />
+                <CategoryNav onSelectCategory={handleTabChange} />
                 
                 <ProductGrid 
                     id={`grid-${activeTab}`}
@@ -83,6 +115,7 @@ const App: React.FC = () => {
                     products={currentSection.products}
                     accentColorClass={colorClasses.accent}
                     buttonColorClass={colorClasses.button}
+                    onProductClick={handleProductClick}
                 />
             </div>
         );
@@ -91,12 +124,14 @@ const App: React.FC = () => {
     const getBreadcrumbLabel = () => {
         if (activeTab === 'fale') return 'Fale com o Farmacêutico';
         if (activeTab === 'conta') return 'Minha Conta';
+        if (activeTab === 'faq') return 'Dúvidas Frequentes';
+        if (selectedProduct) return 'Detalhes do Produto';
         return currentSection?.title;
     };
 
     return (
         <div className="min-h-screen flex flex-col font-sans relative">
-            <Header activeTab={activeTab} setActiveTab={setActiveTab} />
+            <Header activeTab={activeTab} setActiveTab={handleTabChange} />
 
             <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 w-full">
                 
@@ -104,7 +139,7 @@ const App: React.FC = () => {
                 <nav className="text-sm text-gray-500 mb-4" aria-label="Breadcrumb">
                     <ol className="list-none p-0 inline-flex items-center">
                         <li className="flex items-center">
-                            <button onClick={() => setActiveTab('massa')} className="hover:text-certa-orange">Início</button>
+                            <button onClick={() => handleTabChange('massa')} className="hover:text-certa-orange">Início</button>
                             <ChevronRight className="w-4 h-4 mx-2" />
                         </li>
                         <li>
@@ -119,7 +154,7 @@ const App: React.FC = () => {
                 {renderContent()}
 
                 {/* Shared Sections for Home/Product Pages */}
-                {activeTab !== 'conta' && activeTab !== 'fale' && (
+                {activeTab !== 'conta' && activeTab !== 'fale' && activeTab !== 'faq' && !selectedProduct && (
                     <>
                         <EducationSection />
                         <InstitutionalSection />
@@ -129,7 +164,7 @@ const App: React.FC = () => {
 
             </main>
 
-            <Footer />
+            <Footer onNavigate={handleTabChange} />
 
             <CartSidebar />
             <AuthModal />

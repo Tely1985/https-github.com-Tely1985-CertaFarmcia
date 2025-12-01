@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Product, FilterOption } from '../types';
 import ProductCard from './ProductCard';
@@ -8,13 +9,13 @@ interface ProductGridProps {
     products: Product[];
     accentColorClass: string; 
     buttonColorClass: string; 
+    onProductClick: (product: Product) => void;
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ id, filters, products, accentColorClass, buttonColorClass }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ id, filters, products, accentColorClass, buttonColorClass, onProductClick }) => {
     const [activeFilter, setActiveFilter] = useState<string>('all');
 
     // Derived state: Calculates filtered products on the fly during render.
-    // This eliminates the need for useEffect to sync state, fixing potential "Error 153" issues.
     const filteredProducts = activeFilter === 'all' 
         ? products 
         : products.filter(p => p.category === activeFilter);
@@ -62,6 +63,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ id, filters, products, accent
                             product={product} 
                             accentColorClass={accentColorClass}
                             buttonColorClass={buttonColorClass}
+                            onProductClick={onProductClick}
                         />
                     ))}
                     {filteredProducts.length === 0 && (
