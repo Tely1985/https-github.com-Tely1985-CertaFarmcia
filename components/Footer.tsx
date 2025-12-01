@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
     const closeModal = () => setModalInfo({isOpen: false, message: ''});
 
     return (
-        <footer className="bg-certa-blue mt-12 pt-12 pb-8 text-white">
+        <footer className="bg-certa-blue mt-12 pt-24 pb-24 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-end">
                     {/* Column 1: Brand & Contact */}
