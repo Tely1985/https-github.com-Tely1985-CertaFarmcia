@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
     return (
         <footer className="bg-certa-blue mt-12 pt-12 pb-8 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 items-end">
                     {/* Column 1: Brand & Contact */}
                     <div className="lg:col-span-1">
                         <div className="mb-6">
@@ -71,29 +71,32 @@ const Footer: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Column 2: Help (Was Column 3) */}
+                    {/* Column 2: Info & Help Combined */}
                     <div>
-                        <h4 className="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2 inline-block">Ajuda</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            <li><button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="hover:text-certa-orange transition">Voltar ao Topo</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Minha Conta" será implementada em breve.')} className="hover:text-certa-orange transition">Minha Conta</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Rastrear Pedido" será implementada em breve.')} className="hover:text-certa-orange transition">Rastrear Pedido</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Como Comprar" será implementada em breve.')} className="hover:text-certa-orange transition">Como Comprar</button></li>
-                        </ul>
+                        {/* Informações Block */}
+                        <div className="mb-8">
+                            <h4 className="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2 inline-block">Informações</h4>
+                            <ul className="space-y-2 text-sm text-gray-300">
+                                <li><button onClick={() => openModal('Esta seção "Quem Somos" será implementada em breve.')} className="hover:text-certa-orange transition">Quem Somos</button></li>
+                                <li><button onClick={() => openModal('Esta seção "Nossas Lojas" será implementada em breve.')} className="hover:text-certa-orange transition">Nossas Lojas</button></li>
+                                <li><button onClick={() => openModal('Esta seção "Política de Troca" será implementada em breve.')} className="hover:text-certa-orange transition">Política de Troca</button></li>
+                                <li><button onClick={() => openModal('Esta seção "Política de Privacidade" será implementada em breve.')} className="hover:text-certa-orange transition">Política de Privacidade</button></li>
+                            </ul>
+                        </div>
+
+                        {/* Ajuda Block */}
+                        <div>
+                            <h4 className="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2 inline-block">Ajuda</h4>
+                            <ul className="space-y-2 text-sm text-gray-300">
+                                <li><button onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})} className="hover:text-certa-orange transition">Voltar ao Topo</button></li>
+                                <li><button onClick={() => openModal('Esta seção "Minha Conta" será implementada em breve.')} className="hover:text-certa-orange transition">Minha Conta</button></li>
+                                <li><button onClick={() => openModal('Esta seção "Rastrear Pedido" será implementada em breve.')} className="hover:text-certa-orange transition">Rastrear Pedido</button></li>
+                                <li><button onClick={() => openModal('Esta seção "Como Comprar" será implementada em breve.')} className="hover:text-certa-orange transition">Como Comprar</button></li>
+                            </ul>
+                        </div>
                     </div>
 
-                    {/* Column 3: Info (Was Column 2) */}
-                    <div>
-                        <h4 className="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2 inline-block">Informações</h4>
-                        <ul className="space-y-2 text-sm text-gray-300">
-                            <li><button onClick={() => openModal('Esta seção "Quem Somos" será implementada em breve.')} className="hover:text-certa-orange transition">Quem Somos</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Nossas Lojas" será implementada em breve.')} className="hover:text-certa-orange transition">Nossas Lojas</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Política de Troca" será implementada em breve.')} className="hover:text-certa-orange transition">Política de Troca</button></li>
-                            <li><button onClick={() => openModal('Esta seção "Política de Privacidade" será implementada em breve.')} className="hover:text-certa-orange transition">Política de Privacidade</button></li>
-                        </ul>
-                    </div>
-
-                    {/* Column 4: Security */}
+                    {/* Column 3: Security */}
                     <div>
                         <h4 className="text-lg font-bold mb-4 text-white border-b border-gray-700 pb-2 inline-block">Segurança</h4>
                         <div className="flex flex-col space-y-3">
