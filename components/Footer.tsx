@@ -17,10 +17,10 @@ const Footer: React.FC = () => {
                         <div className="mb-6">
                             <div className="bg-transparent p-3 rounded-lg inline-block">
                                 <img 
-                                    src="https://i.postimg.cc/cC8VrCSz/logo_certa_1_1.webp" 
-                                    alt="CERTA Farmácia" 
-                                    className="h-12 w-auto" 
-                                />
+    src="https://i.postimg.cc/cC8VrCSz/logo_certa_1_1.webp" 
+    alt="CERTA Farmácia" 
+    className="h-[58px] md:h-[68px] lg:h-[72px] w-auto"
+/>
                             </div>
                         </div>
                         
