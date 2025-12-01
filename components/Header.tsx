@@ -69,7 +69,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                             <img 
                                 src="https://i.postimg.cc/Njx63QjB/logo-certa-2.webp" 
                                 alt="CERTA Farmácia" 
-                                className="h-12 md:h-16 w-auto"
+                                className="h-10 md:h-14 w-auto"
                             />
                         </div>
 

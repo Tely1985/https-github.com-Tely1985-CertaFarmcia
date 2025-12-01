@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
                     {/* Column 1: Brand & Contact */}
                     <div className="lg:col-span-1">
                         <div className="mb-6">
-                            <div className="bg-transparent p-3 rounded-lg inline-block">
+                            <div className="bg-transparent inline-block">
                                 <img 
     src="https://i.postimg.cc/cC8VrCSz/logo_certa_1_1.webp" 
     alt="CERTA Farmácia" 
@@ -120,7 +120,7 @@ const Footer: React.FC = () => {
                     <div className="flex flex-col items-center">
                         <p className="text-xs font-semibold mb-2 text-gray-400">Meios de Pagamento</p>
                         <div className="bg-white p-2 rounded-lg inline-block">
-                             <img src="https://placehold.co/300x25/ffffff/000000?text=Visa+Master+Elo+Hipercard+Boleto+Pix" alt="Bandeiras de Cartões" className="h-6 opacity-80" />
+                             <img src="https://i.postimg.cc/WbT6XD2p/Certa-Farmacia-Bandeiras.webp" alt="Bandeiras de Cartões" className="h-5 w-auto" />
                         </div>
                     </div>
                 </div>
