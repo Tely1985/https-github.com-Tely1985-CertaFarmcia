@@ -48,7 +48,7 @@ const NewUnitSection: React.FC = () => {
                 <div className="flex flex-col space-y-6">
                     <div className="relative flex-grow rounded-2xl overflow-hidden shadow-xl min-h-[250px]">
                         <img 
-                            src="https://placehold.co/800x600/0A3350/ffffff?text=Interior+Nova+Unidade" 
+                            src="https://i.postimg.cc/Prkbvx63/interior.webp" 
                             alt="Interior da Nova Unidade" 
                             className="w-full h-full object-cover transition transform hover:scale-105 duration-700 absolute inset-0" 
                         />
