@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { ChevronRight } from 'lucide-react';
 import Header from './components/Header';
@@ -12,6 +13,7 @@ import AccountDashboard from './components/AccountDashboard';
 import CategoryNav from './components/CategoryNav';
 import EducationSection from './components/EducationSection';
 import NewUnitSection from './components/NewUnitSection';
+import InstitutionalSection from './components/InstitutionalSection';
 import { SECTIONS } from './constants';
 import { TabId } from './types';
 import { useAuth } from './context/AuthContext';
@@ -120,6 +122,7 @@ const App: React.FC = () => {
                 {activeTab !== 'conta' && activeTab !== 'fale' && (
                     <>
                         <EducationSection />
+                        <InstitutionalSection />
                         <NewUnitSection />
                     </>
                 )}
