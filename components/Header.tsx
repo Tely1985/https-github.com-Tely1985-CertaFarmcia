@@ -1,7 +1,9 @@
 
 import React, { useState } from 'react';
-import { Truck, Handshake, ClipboardCheck, Search, User, ShoppingCart, Menu, MessageCircle } from 'lucide-react';
+import { Truck, Handshake, ClipboardCheck, Search, User as UserIcon, ShoppingCart, Menu, MessageCircle, LogOut } from 'lucide-react';
 import { TabId } from '../types';
+import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 interface HeaderProps {
     activeTab: TabId;
@@ -10,10 +12,20 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const { cartCount, setIsCartOpen } = useCart();
+    const { user, isAuthenticated, openAuthModal, logout } = useAuth();
 
     const handleTabClick = (tab: TabId) => {
         setActiveTab(tab);
         setMobileMenuOpen(false);
+    };
+
+    const handleUserClick = () => {
+        if (isAuthenticated) {
+            handleTabClick('conta');
+        } else {
+            openAuthModal();
+        }
     };
 
     const getNavClass = (tab: TabId) => {
@@ -68,13 +80,29 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
 
                         {/* Actions */}
                         <div className="flex items-center space-x-4">
-                            <button className="text-certa-blue hover:text-certa-orange p-2 rounded-full hidden sm:block">
-                                <User className="w-6 h-6" />
-                                <span className="text-xs block">Conta</span>
+                            <button 
+                                className="text-certa-blue hover:text-certa-orange p-2 rounded-full hidden sm:block flex flex-col items-center justify-center relative group"
+                                onClick={handleUserClick}
+                            >
+                                <div className="relative">
+                                    <UserIcon className="w-6 h-6" />
+                                    {isAuthenticated && <span className="absolute bottom-0 right-0 w-2 h-2 bg-green-500 rounded-full border border-white"></span>}
+                                </div>
+                                <span className="text-xs block max-w-[80px] truncate">
+                                    {isAuthenticated ? user?.name.split(' ')[0] : 'Conta'}
+                                </span>
                             </button>
-                            <button className="text-certa-blue hover:text-certa-orange p-2 rounded-full relative">
+
+                            <button 
+                                className="text-certa-blue hover:text-certa-orange p-2 rounded-full relative"
+                                onClick={() => setIsCartOpen(true)}
+                            >
                                 <ShoppingCart className="w-6 h-6" />
-                                <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">3</span>
+                                {cartCount > 0 && (
+                                    <span className="absolute top-0 right-0 bg-certa-orange text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center animate-bounce">
+                                        {cartCount}
+                                    </span>
+                                )}
                                 <span className="text-xs block">Carrinho</span>
                             </button>
                             {/* Mobile Menu Btn */}
@@ -119,6 +147,17 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                     {mobileMenuOpen && (
                         <div className="lg:hidden bg-white border-t border-gray-100 mt-4 px-4 pb-4 shadow-lg absolute w-full left-0 z-40 animate-fadeIn">
                             <nav className="flex flex-col space-y-3 mt-4 text-base font-medium">
+                                {/* Mobile User Section */}
+                                <div className="flex items-center p-3 bg-gray-50 rounded-lg mb-2" onClick={handleUserClick}>
+                                    <div className="bg-white p-2 rounded-full shadow-sm mr-3">
+                                        <UserIcon className="w-5 h-5 text-certa-blue" />
+                                    </div>
+                                    <div>
+                                        <p className="font-bold text-certa-blue">{isAuthenticated ? user?.name : 'Minha Conta'}</p>
+                                        <p className="text-xs text-gray-500">{isAuthenticated ? 'Ver perfil' : 'Entrar ou Cadastrar'}</p>
+                                    </div>
+                                </div>
+
                                 <button onClick={() => handleTabClick('massa')} className="text-left text-certa-orange bg-orange-50 px-3 py-2 rounded-lg">Ganho de Massa</button>
                                 <button onClick={() => handleTabClick('emagrecimento')} className="text-left text-certa-blue hover:text-certa-orange hover:bg-gray-50 px-3 py-2 rounded-lg transition">Emagrecimento</button>
                                 <button onClick={() => handleTabClick('vitaminas')} className="text-left text-certa-blue hover:text-certa-orange hover:bg-gray-50 px-3 py-2 rounded-lg transition">Vitaminas & Minerais</button>
@@ -129,6 +168,12 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                                         Fale com o Farmacêutico
                                     </button>
                                 </div>
+                                {isAuthenticated && (
+                                     <button onClick={logout} className="text-left text-red-500 font-semibold flex items-center px-3 py-2 hover:bg-red-50 rounded-lg w-full">
+                                        <LogOut className="w-5 h-5 mr-2" />
+                                        Sair
+                                    </button>
+                                )}
                             </nav>
                         </div>
                     )}

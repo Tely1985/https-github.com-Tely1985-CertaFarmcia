@@ -1,5 +1,5 @@
 
-export type TabId = 'massa' | 'emagrecimento' | 'vitaminas' | 'cuidados' | 'fale';
+export type TabId = 'massa' | 'emagrecimento' | 'vitaminas' | 'cuidados' | 'fale' | 'conta';
 
 export interface Product {
     id: string;
@@ -9,6 +9,10 @@ export interface Product {
     image: string;
     category: string;
     tag?: string;
+}
+
+export interface CartItem extends Product {
+    quantity: number;
 }
 
 export interface FilterOption {
@@ -31,4 +35,11 @@ export interface SectionData {
     };
     filters: FilterOption[];
     products: Product[];
+}
+
+export interface User {
+    id: string;
+    name: string;
+    email: string;
+    avatar?: string;
 }
