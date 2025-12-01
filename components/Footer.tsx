@@ -14,11 +14,14 @@ const Footer: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                     {/* Column 1: Brand & Contact */}
                     <div className="lg:col-span-1">
-                        <div className="flex items-center mb-6">
-                            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3 shadow-md">
-                                <span className="text-certa-blue font-bold text-xl">C</span>
+                        <div className="mb-6">
+                            <div className="bg-transparent p-3 rounded-lg inline-block">
+                                <img 
+                                    src="https://i.postimg.cc/cC8VrCSz/logo_certa_1_1.webp" 
+                                    alt="CERTA Farmácia" 
+                                    className="h-12 w-auto" 
+                                />
                             </div>
-                            <h4 className="text-2xl font-bold">CERTA <span className="text-certa-orange">FARMÁCIA</span></h4>
                         </div>
                         
                         <div className="space-y-6">
