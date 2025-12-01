@@ -9,6 +9,7 @@ import Modal from './components/Modal';
 import CartSidebar from './components/CartSidebar';
 import AuthModal from './components/AuthModal';
 import AccountDashboard from './components/AccountDashboard';
+import CategoryNav from './components/CategoryNav';
 import { SECTIONS } from './constants';
 import { TabId } from './types';
 import { useAuth } from './context/AuthContext';
@@ -79,6 +80,8 @@ const App: React.FC = () => {
                     textColorClass={currentSection.hero.textColorClass}
                     onButtonClick={handleHeroButtonClick}
                 />
+
+                <CategoryNav onSelectCategory={setActiveTab} />
                 
                 <ProductGrid 
                     id={`grid-${activeTab}`}
